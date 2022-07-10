@@ -1,11 +1,12 @@
 package mavenTestNGHomework;
 
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class Calculator {
+    Calculator calculator;
 
     public double add(double x, double y) {
         return x + y;
@@ -23,35 +24,35 @@ public class Calculator {
         return x * y;
     }
 
-    @BeforeMethod(alwaysRun = true)
-    public void openBrowser() {
+    @BeforeTest
+    public void beforeEverything() {
+        calculator = new Calculator();
+    }
 
+    @BeforeMethod
+    public void beforeCalculator() {
+        System.out.println("Tests ir sācies.");
 
-        ChromeDriver driver = new ChromeDriver();
-        driver.get("http://google.lv");
+    }
 
-        @Test
-        public void testAddMethod () {
-            Calculator calculator = new Calculator();
-            Assert.assertEquals(calculator.add(10, 20), 30);
-        }
+    @Test
+    public void testAddMethod() {
+        Assert.assertEquals(calculator.add(10, 20), 30);
+    }
 
+    @Test
+    public void testSubtractMethod() {
+        Assert.assertEquals(calculator.subtract(10.00, 20.00), -10.00);
+    }
 
-        @Test
-        public void testSubtractMethod () {
-            Calculator calculator = new Calculator();
-            Assert.assertEquals(calculator.subtract(10.00, 20.00), -10.00);
-        }
+    @Test
+    public void testDivideMethod() {
+        Assert.assertEquals(calculator.divide(6.00, 3.00), 2.00);
+    }
 
-        @Test
-        public void testDivideMethod () {
-            Calculator calculator = new Calculator();
-            Assert.assertEquals(calculator.divide(6.00, 3.00), 2.00);
-        }
+    @Test
+    public void testMultiplyMethod() {
+        Assert.assertEquals(calculator.multiply(2.00, 6.00), 12.00);
+    }
+}
 
-        @Test
-        public void testMultiplyMethod () {
-            Calculator calculator = new Calculator();
-            Assert.assertEquals(calculator.multiply(2.00, 6.00), 12.00);
-        }
-    }}
