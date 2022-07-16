@@ -14,18 +14,23 @@ public class BrowserTest {
     public void openBrowser() {
         driver = new ChromeDriver();
     }
-        @Test
-        public void pageGoogle() {
-            driver.get("http://google.lv");
-            Assert.assertEquals(driver.getTitle(), "Google");
-        }
+
+    @Test
+    public void pageGoogle() {
+        driver.get("http://google.lv");
+        Assert.assertEquals(driver.getTitle(), "Google");
+    }
+
     @Test
     public void pageReuters() {
         driver.get("https://www.reuters.com/");
         Assert.assertEquals(driver.getTitle(), "Breaking International News & Views | Reuters");
+
+
     }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.close();
-}
+    }
 }
